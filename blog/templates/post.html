@@ -1,25 +1,30 @@
 {% extends "base.html" %}
-
 {% block content %}
+    <div class="main">
 
+        <div class="title">{{ post.title }}</div>
+        <ul>
+            <div class="time">{{ post.created }}</div>
+            <div class="body">{{ post.body|linebreaks }}</div>
+            <div class="author">{{ post.author }}</div>
+        </ul>
 
+        <hr />
 
-<h2><a href="/blog/{{post.id}}">{{ post.title }}</a></h2>
+        {% for comment in comment_list %}
+            <ul>
+                <div class="time">AUTHOR: {{ comment.author }}</div>
+                <div class="body">BODY: {{ comment.body|linebreaks }}</div>
+            </ul>
+        {% endfor %}
+        
+        <form action="{% url add_comment post.id %}" method="post">{% csrf_token %}
+        <table>
+            {{ comment_form.as_table }}
+        </table>
+        <input type="submit" value="Submit">
+       </form>
 
-<div class = "post_meta">
-  on {{ post.created }}
-</div>
-
-<div class = "post_body">
-  on {{ post.body|safe|linebreaks }}
-</div>
-
-<div class="tags">
-  {% for tag in post.tags.all %}
-  <a href="/blog/tag/{{tag}}">{{tag}}</a>
-  {% if not forloop.last %}, {% endif %}
-  {% endfor %}
-</div>
-
-
+        </div>
+    </div>
 {% endblock %}

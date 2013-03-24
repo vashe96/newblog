@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="main">
+
+        <div class="title">{{ post.title }}</div>
+        <ul>
+            <div class="time">{{ post.created }}</div>
+            <div class="body">{{ post.body|linebreaks }}</div>
+            <div class="author">{{ post.author }}</div>
+        </ul>
+
+        <hr />
+
+        {% for comment in comment_list %}
+            <ul>
+                <div class="time">{{ comment.author }}</div>
+                <div class="body">{{ comment.body|linebreaks }}</div>
+            </ul>
+        {% endfor %}
+        
+        <form action="{% url add_comment post.id %}" method="post">{% csrf_token %}
+        <table>
+            {{ comment_form.as_table }}
+        </table>
+        <input type="submit" value="Submit">
+       </form>
+
+        </div>
+    </div>
+{% endblock %}

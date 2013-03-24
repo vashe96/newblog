@@ -108,6 +108,11 @@ TEMPLATE_DIRS = (
     # Don't forget to use absolute paths, not relative paths.
 )
 
+AUTHENTICATION_BACKENDS = (
+    'simplereg.backend.EmailAuthBackEnd',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
 INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -118,7 +123,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'taggit',
     'blog',
- 
+    'simplereg',
 )
 
 # A sample logging configuration. The only tangible logging
@@ -149,3 +154,10 @@ LOGGING = {
         },
     }
 }
+
+TEMPLATE_CONTENT_PROCESSOR (
+    'django.contrib.auth.content_processors.auth',
+    'django.core.content_processors.media',
+    'django.core.content_processors.csrf',
+)
+

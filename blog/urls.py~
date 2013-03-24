@@ -3,6 +3,7 @@ from django.views.generic import ListView, DetailView
 from blog.models import Post
 from django.contrib.syndication.views import Feed
 
+
 class BlogFeed(Feed):
     title = "MySite"
     descriprion = "Some ramblings of mine"
@@ -14,7 +15,7 @@ class BlogFeed(Feed):
 	return item.title
     def item_description(self, item):
 	return item.body
-    def item_link(self, item)
+    def item_link(self, item):
 	return u"/blog/%d" % item.id
 
 
@@ -24,10 +25,7 @@ urlpatterns = patterns('blog.views',
                               queryset=Post.objects.all().order_by("-created")[:2],
                               template_name="blog.html")),
 
-    url(r'^(?P<pk>\d+)$', DetailView.as_view(
-                              
-                              model=Post,
-                              template_name="post.html")),
+    url(r'^(?P<pk>\d+)$', 'show_post',),
 
     url(r'^archives/$', ListView.as_view(
                               queryset=Post.objects.all().order_by("-created"),
@@ -35,5 +33,10 @@ urlpatterns = patterns('blog.views',
 
     url(r'^tag/(?P<tag>\w+)$', 'tagpage'),
     url(r'^feed/$', BlogFeed()),
+    
+    
+    url(r'^(?P<post_id>\d+)/del$', 'delete', name="delete_post"),
+    url(r'^(?P<post_id>/<comment_id>\d+)/del$', 'delete', name="delete_comment"),
+
     
 )

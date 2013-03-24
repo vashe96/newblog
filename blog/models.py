@@ -1,11 +1,25 @@
 from django.db import models
 from taggit.managers import TaggableManager
+from django.contrib import admin
+from django.contrib.auth.models import User
 
 class Post(models.Model):
     title = models.CharField(max_length = 100)
     body = models.TextField()
-    created = models.DateTimeField()
+    created = models.DateTimeField(auto_now_add=True)
     tags = TaggableManager()
+    author = models.ForeignKey(User)
 
     def __unicode__(self):
-        return self.title
+        return self.title 
+
+class Comment(models.Model):
+    created = models.DateTimeField(auto_now_add=True)
+    author = models.CharField(max_length=60)
+    body = models.TextField()
+    post = models.ForeignKey(Post)
+
+    def __unicode__(self):
+        return unicode("%s: %s" % (self.post, self.body[:60]))
+
+

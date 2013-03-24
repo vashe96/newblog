@@ -1,0 +1,14 @@
+<p>You searched for: <strong>{{ query }}</strong></p>
+
+{% if post %}
+    <p>Found {{ post|length }} post{{ post|pluralize }}.</p>
+    <ul>
+        {% for post in post %}
+        <li>{{ post.title }}</li>
+        <meta http-equiv="REFRESH" content="1;url=/blog/{{post.id}}">   
+
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No posts matched your search criteria.</p>
+{% endif %}

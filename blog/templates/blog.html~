@@ -4,14 +4,14 @@
 
 {% for post in object_list %}
 
-<h2>{{ post.title }}</h2>
+<h2><a href="/blog/{{post.id}}">{{ post.title }}</a></h2>
 
 <div class = "post_meta">
   on {{ post.created }}
 </div>
 
 <div class = "post_body">
-  on {{ post.body|safe|linebreaks }}
+  BODY:{{ post.body|safe|linebreaks }}
 </div>
 
 <div class="tags">
@@ -20,6 +20,18 @@
   {% if not forloop.last %}, {% endif %}
   {% endfor %}
 </div>
+
+<div class = "author">
+  AUTHOR: {{ post.author }}
+</div>
+
+<a href="{% url delete_post post.id %}">
+  DELETE POST 
+</a>
+
+<a href="{% url delete_comment comment.id %}">
+  DELETE COMMENT 
+</a>
 
 {% endfor %}
 

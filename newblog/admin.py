@@ -1,4 +1,12 @@
 from django.contrib import admin
 from blog.models import Post
+from blog.models import Comment
+from appath.models import BlogUser
+
+class CommentAdmin(admin.ModelAdmin):
+    display_fields = ["post", "author", "created"]
 
 admin.site.register(Post)
+admin.site.register(BlogUser)
+admin.site.register(Comment)
+admin.site.register(CommentAdmin)

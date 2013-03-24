@@ -11,7 +11,7 @@
 </div>
 
 <div class = "post_body">
-  on {{ post.body|safe|linebreaks }}
+  BODY:{{ post.body|safe|linebreaks }}
 </div>
 
 <div class="tags">
@@ -20,6 +20,16 @@
   {% if not forloop.last %}, {% endif %}
   {% endfor %}
 </div>
+
+<div class = "author">
+  AUTHOR: {{ post.author }}
+</div>
+
+<a href="{% url delete_post post.id %}">
+  DELETE POST 
+</a>
+
+
 
 {% endfor %}
 
