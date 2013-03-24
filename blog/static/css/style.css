@@ -1,0 +1,11 @@
+body { color: red; background: eff4ff; padding: 0 5em; margin : 0}
+h1 {padding: 2em 1em; background: #675 }
+h2 {color: #bf8; border-top: 1px dotted #fff; margin-top: 2em}
+p { margin: 1em 0}
+a {
+    background-color: #F1F1F1; 
+    border: 1px;
+    border-color: #b91d47; 
+    border-style: solid;
+    text-decoration: none;
+}
