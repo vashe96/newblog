@@ -23,7 +23,7 @@ urlpatterns = patterns('blog.views',
     # Examples:
     url(r'^$', ListView.as_view(
                               queryset=Post.objects.all().order_by("-created")[:2],
-                              template_name="blog.html")),
+                              template_name="blog.html"), name='blog'),
 
     url(r'^(?P<pk>\d+)$', 'show_post',),
 

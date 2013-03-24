@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% url blog as blog %}
+<h2><a href="{{ blog }}">I'm linking to {{ blog }}</a></h2>
+{% url search as search %}
+<h2><a href="{{ search }}">I'm linking to {{ search }}</a></h2>
+{% url registration as registration %}
+<h2><a href="{{ registration }}">I'm linking to {{ registration }}</a></h2>
+{% url login as login %}
+<h2><a href="{{ login }}">I'm linking to {{ login }}</a></h2>
+{% endblock %}
