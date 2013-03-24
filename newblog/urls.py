@@ -18,7 +18,7 @@ urlpatterns = patterns('',
    url(r'^blog/', include('blog.urls'),),
    url(r'^search-form/$', search_form, name='search'),
    url(r'^search/$', search),
-   url(r'^create/$', post),
+   url(r'^create/$', post, name='create'),
 
    url(r'^admin/', include(admin.site.urls)),
    

@@ -4,6 +4,8 @@
 
 {% url blog as blog %}
 <h2><a href="{{ blog }}">I'm linking to {{ blog }}</a></h2>
+{% url create as create %}
+<h2><a href="{{ create }}">I'm linking to {{ create }}</a></h2>
 {% url search as search %}
 <h2><a href="{{ search }}">I'm linking to {{ search }}</a></h2>
 {% url registration as registration %}
