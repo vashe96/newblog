@@ -2,6 +2,9 @@
 
 {% block content %}
 
+{% block search_form %}
+{{ search_form }}
+{% endblock %}
 {% url blog as blog %}
 <h2><a href="{{ blog }}">I'm linking to {{ blog }}</a></h2>
 {% url create as create %}

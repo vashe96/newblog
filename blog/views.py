@@ -33,17 +33,21 @@ def search(request):
         return HttpResponse('Please submit a search term.')
 
 def post(request):
-    if request.method == 'POST':
-        form = PostForm(request.POST or None)
-        if form.is_valid():
-           new_post = form.save(commit=False)
-           new_post.author = request.user
-           new_post.save()
-           return HttpResponseRedirect('/blog')
+    if request.user.is_authenticated():
+        if request.method == 'POST':
+            form = PostForm(request.POST or None)
+    
+            if form.is_valid():
+                new_post = form.save(commit=False)
+                new_post.author = request.user
+                new_post.save()
+                return HttpResponseRedirect('/blog')
+        else:
+            form = PostForm()
+        c = {'form': form}
+        return render_to_response('create.html', c, context_instance=RequestContext(request))
     else:
-        form = PostForm()
-    c = {'form': form}
-    return render_to_response('create.html', c, context_instance=RequestContext(request))
+        return HttpResponse('You must be logged in')
 
 
 def add_comment(request, pk):
