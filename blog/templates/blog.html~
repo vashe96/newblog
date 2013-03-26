@@ -1,6 +1,9 @@
 {% extends "base.html" %}
 
+
 {% block content %}
+
+{# search_form #}
 
 {% for post in object_list %}
 
@@ -29,9 +32,7 @@
   DELETE POST 
 </a>
 
-<a href="{% url delete_comment comment.id %}">
-  DELETE COMMENT 
-</a>
+
 
 {% endfor %}
 

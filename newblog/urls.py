@@ -5,8 +5,9 @@ from django.views.generic.simple import direct_to_template
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
-from blog.views import search, search_form, post, add_comment
+from blog.views import search, search_form, post, add_comment, object_list
 admin.autodiscover()
+from blog.models import Post
 
 urlpatterns = patterns('',
     # Examples:

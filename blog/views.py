@@ -84,6 +84,12 @@ def show_post(request, pk):
          'comment_list' : Comment.objects.filter(post=post)
         }
     return render_to_response('post.html', c, context_instance=RequestContext(request))
+
+def object_list(request, model):
+    obj_list = model.objects.all()
+    template_name = 'newblog/%s_list.html' % model.__name__.lower()
+    return render_to_response(template_name, {'object_list': obj_list})   
+ 
     
     
 

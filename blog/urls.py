@@ -37,6 +37,5 @@ urlpatterns = patterns('blog.views',
     
     url(r'^(?P<post_id>\d+)/del$', 'delete', name="delete_post"),
     url(r'^(?P<comment_id>\d+)/del$', 'delete', name="delete_comment"),
-
     
 )

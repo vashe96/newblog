@@ -1,6 +1,9 @@
 {% extends "base.html" %}
+{% load custom_tags %}
 
 {% block content %}
+
+{% search_form %}
 
 {% for post in object_list %}
 

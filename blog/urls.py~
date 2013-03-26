@@ -23,7 +23,7 @@ urlpatterns = patterns('blog.views',
     # Examples:
     url(r'^$', ListView.as_view(
                               queryset=Post.objects.all().order_by("-created")[:2],
-                              template_name="blog.html")),
+                              template_name="blog.html"), name='blog'),
 
     url(r'^(?P<pk>\d+)$', 'show_post',),
 
@@ -37,6 +37,6 @@ urlpatterns = patterns('blog.views',
     
     url(r'^(?P<post_id>\d+)/del$', 'delete', name="delete_post"),
     url(r'^(?P<comment_id>\d+)/del$', 'delete', name="delete_comment"),
-
+    url(r'^posts/$', object_list, {'model': models.Post}),
     
 )

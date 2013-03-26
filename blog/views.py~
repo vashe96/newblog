@@ -47,7 +47,7 @@ def post(request):
         c = {'form': form}
         return render_to_response('create.html', c, context_instance=RequestContext(request))
     else:
-        return 0
+        return HttpResponse('You must be logged in')
 
 
 def add_comment(request, pk):
