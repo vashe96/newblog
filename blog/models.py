@@ -3,6 +3,7 @@ from taggit.managers import TaggableManager
 from django.contrib import admin
 from django.contrib.auth.models import User
 
+
 class Post(models.Model):
     title = models.CharField(max_length = 100)
     body = models.TextField()
@@ -21,5 +22,7 @@ class Comment(models.Model):
 
     def __unicode__(self):
         return unicode("%s: %s" % (self.post, self.body[:60]))
+
+
 
 

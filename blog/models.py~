@@ -2,11 +2,13 @@ from django.db import models
 from taggit.managers import TaggableManager
 from django.contrib import admin
 from django.contrib.auth.models import User
+from django import forms
+from django.contrib.admin.widgets import AdminDateWidget
 
 class Post(models.Model):
     title = models.CharField(max_length = 100)
     body = models.TextField()
-    created = models.DateTimeField()
+    created = models.DateTimeField(auto_now_add=True)
     tags = TaggableManager()
     author = models.ForeignKey(User)
 
@@ -21,5 +23,8 @@ class Comment(models.Model):
 
     def __unicode__(self):
         return unicode("%s: %s" % (self.post, self.body[:60]))
+
+class TestForm(forms.Form):
+    datefrom = forms.DateTimeField(label='Дата',  widget=AdminDateWidget)
 
 

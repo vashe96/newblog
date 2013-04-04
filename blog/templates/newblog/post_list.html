@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load custom_tags %}
+
+{% block content %}
+
+
+
+{% for post in post_list %}
+
+<div class = "post_meta">
+  on {{ post.created }}
+</div>
+
+
+{% endfor %}
+
+{% endblock %}

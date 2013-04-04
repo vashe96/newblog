@@ -9,6 +9,7 @@ from blog.models import Comment
 from django.template import RequestContext
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
+from datetime import date
 
 
 def tagpage(request, tag):
@@ -84,6 +85,12 @@ def show_post(request, pk):
          'comment_list' : Comment.objects.filter(post=post)
         }
     return render_to_response('post.html', c, context_instance=RequestContext(request))
+
+def list_of_days(request):
+    list_d = Post.objects.dates('created', 'day')
+    list_d = str(list_d)
+    return HttpResponse(list_d)
+ 
     
     
 

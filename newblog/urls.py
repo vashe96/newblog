@@ -5,9 +5,10 @@ from django.views.generic.simple import direct_to_template
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
-from blog.views import search, search_form, post, add_comment, object_list
+from blog.views import search, search_form, post, add_comment, list_of_days
 admin.autodiscover()
 from blog.models import Post
+
 
 urlpatterns = patterns('',
     # Examples:
@@ -20,6 +21,7 @@ urlpatterns = patterns('',
    url(r'^search-form/$', search_form, name='search'),
    url(r'^search/$', search),
    url(r'^create/$', post, name='create'),
+   url(r'^list_of_days/$', list_of_days),
 
    url(r'^admin/', include(admin.site.urls)),
    

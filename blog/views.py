@@ -9,6 +9,7 @@ from blog.models import Comment
 from django.template import RequestContext
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
+from datetime import date
 
 
 def tagpage(request, tag):
@@ -85,11 +86,23 @@ def show_post(request, pk):
         }
     return render_to_response('post.html', c, context_instance=RequestContext(request))
 
-def object_list(request, model):
-    obj_list = model.objects.all()
-    template_name = 'newblog/%s_list.html' % model.__name__.lower()
-    return render_to_response(template_name, {'object_list': obj_list})   
+
+def range_dates(start, end):
+    assert start <= end
+    current = start.year * 12 + start.month - 1
+    end = end.year * 12 + end.month - 1
+    while current <= end:
+        yield date(current // 12, current % 12 + 1, 1)
+        current += 1
  
+for x in range_dates(date(2009,1,22), date(2010,1,13)):
+    print x
+ 
+
+def list_of_days(request):
+    list_d = Post.objects.dates('created', 'day')
+    list_d = str(list_d)
+    return HttpResponse(list_d)
     
     
 
